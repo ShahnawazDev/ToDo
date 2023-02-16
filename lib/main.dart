@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:todo/pages/home_page.dart';
 
-void main() {
+void main() async {
+  // init the hive
+  await Hive.initFlutter();
+
+  //open a box
+  var box = await Hive.openBox('mybox');
   runApp(const MainApp());
 }
 
@@ -9,11 +16,11 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: const HomePage(),
+      theme: ThemeData(
+        primarySwatch: Colors.amber,
       ),
     );
   }
