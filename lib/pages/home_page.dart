@@ -13,7 +13,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   //reference the hive box
-  
+
   final _myBox = Hive.box('mybox');
   ToDoDataBase db = ToDoDataBase();
 
@@ -74,16 +74,24 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.amber[200],
+      backgroundColor: Theme.of(context).scaffoldBackgroundColor,
       appBar: AppBar(
-        title: const Center(
-          child: Text('To Do'),
+        title: Center(
+          child: Text(
+            'To Do',
+            style: Theme.of(context).textTheme.displayLarge,
+          ),
         ),
         elevation: 0,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: createNewTask,
-        child: const Icon(Icons.add),
+        backgroundColor: const Color.fromARGB(255, 188, 212, 0),
+        child: const Icon(
+          Icons.add,
+          color: Colors.white,
+          size: 30.0,
+        ),
       ),
       body: ListView.builder(
         itemCount: db.toDoList.length,

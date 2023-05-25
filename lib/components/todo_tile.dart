@@ -18,7 +18,7 @@ class ToDoTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: 25.0, right: 25, top: 25),
+      padding: const EdgeInsets.only(left: 25.0, right: 20, top: 15),
       child: Slidable(
         endActionPane: ActionPane(
           motion: const StretchMotion(),
@@ -26,16 +26,22 @@ class ToDoTile extends StatelessWidget {
             SlidableAction(
               onPressed: deleteFunction,
               icon: Icons.delete,
-              backgroundColor: Colors.red.shade300,
+              backgroundColor: const Color.fromARGB(255, 225, 30, 203),
               borderRadius: BorderRadius.circular(12),
             ),
           ],
         ),
         child: Container(
-          padding: const EdgeInsets.all(24),
+          width: double.infinity,
+          padding: const EdgeInsets.only(
+            left: 5,
+            top: 15,
+            right: 10,
+            bottom: 15,
+          ),
           decoration: BoxDecoration(
-            color: Colors.amber,
-            borderRadius: BorderRadius.circular(15),
+            color: Theme.of(context).primaryColor,
+            borderRadius: BorderRadius.circular(10),
           ),
           child: Row(
             children: [
@@ -43,15 +49,24 @@ class ToDoTile extends StatelessWidget {
               Checkbox(
                 value: taskCompleted,
                 onChanged: onChanged,
-                activeColor: Colors.black,
+                hoverColor: Theme.of(context).colorScheme.background,
+                activeColor: Theme.of(context).colorScheme.background,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(5.0)),
               ),
               //task name
-              Text(
-                taskName,
-                style: TextStyle(
-                  decoration: taskCompleted
-                      ? TextDecoration.lineThrough
-                      : TextDecoration.none,
+              Expanded(
+                child: Text(
+                  taskName,
+                  style: TextStyle(
+                    decoration: taskCompleted
+                        ? TextDecoration.lineThrough
+                        : TextDecoration.none,
+                    color: Colors.white,
+                    fontSize: 18.0,
+                  ),
+                  overflow: TextOverflow.visible,
+                  softWrap: true,
                 ),
               ),
             ],
